@@ -1,0 +1,55 @@
+
+palette $pair (arg:T) at S {
+
+} 
+
+let $checkPair = $pair (...)
+
+----------------------------------------------------------------------------
+
+e ::= ...
+   |  let palette $x = p in e'
+   |  $p e_model
+
+T ::= T1 + T2 | T1 * T2 | ...
+
+paletteDef pd  ::= { T_expand, T_model, T_msg, e_init, e_update, e_expand, e_view }
+paletteExp p   ::= pd | \x -> p | p e
+paletteType PT ::= Palette T_expand T_model | T -> PT
+
+G ::= - | x:T, G | x:PT, G
+D ::= - | T, D | x:PT, D
+
+----------------------------------------------------------------------------
+
+Expression Typing      G; D |- e : T
+
+  G; D |- p       : Palette T_expand T_model
+  G; D |- e_model : T_model
+  --------------------------------- [E-Palette]
+  G; D |- $p e_model : T_expand
+
+----------------------------------------------------------------------------
+
+Palette Expression Typing      G; D |-_p p : PT
+
+  pd = { T_expand, T_model, T_msg, e_init, e_update, e_expand, e_view }
+  D |- T_model
+  D |- T_msg
+  D' = model :: S(T_model), msg :: S(T_msg), D
+  0; D' |- e_init : model
+  0; D' |- e_update : msg -> model -> model
+  0; D' |- e_expand : Exp
+  0; D' |- e_view : Html msg
+  ------------------------------------------ [P-Def]
+  G; D |-_p pd : Palette T_expand T_model
+
+  G; D, T |-_p p : PT
+  --------------------------- [P-Lam]
+  G; D |-_p \x -> p : T -> PT
+
+  D |-_p p : T -> PT
+  G |-   e : T
+  --------------------------- [P-App]
+  G; D |-_p p e : PT
+

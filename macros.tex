@@ -1,0 +1,239 @@
+% !TEX root = hazelnut-dynamics.tex
+
+% \newcommand{\Label}[1]{\vspace{-20px}\label{#1}%
+%   {\small\textcolor{cyan}{(\texttt{#1})}}\vspace{20px}%
+% }
+
+\newcommand{\cmttclo}[2]{\mathsf{clo}(#1, #2)}
+
+% \newcommand{\CaptionLabel}[2]{
+%   \caption{#1 {\small\textcolor{cyan}{(#2)}}}
+%   \label{#2}}
+\newcommand{\CaptionLabel}[2]{
+  \caption{#1}
+  \label{#2}}
+
+% Violet hotdogs; highlight color helps distinguish them
+\newcommand{\llparenthesiscolor}{\textcolor{violet}{\llparenthesis}}
+\newcommand{\rrparenthesiscolor}{\textcolor{violet}{\rrparenthesis}}
+% \newcommand{\llparenthesiscolor}{\textcolor{red}{\lfloor}}
+% \newcommand{\rrparenthesiscolor}{\textcolor{red}{\rfloor}}
+
+%% TODO if feeling really obsessive, use the following in place of x,u,c,b
+\newcommand{\varVar}{x}
+\newcommand{\varHole}{u}
+\newcommand{\econst}{c}
+\newcommand{\tbase}{b}
+
+% HTyp and HExp
+\newcommand{\isComplete}[1]{#1~\mathsf{complete}}
+
+% HTyp
+\newcommand{\htau}{\tau}
+\newcommand{\tarr}[2]{#1 \rightarrow #2}
+%\newcommand{\tsum}[2]{#1 + #2}
+\newcommand{\tprod}[2]{#1 \times #2}
+\newcommand{\tnum}{\texttt{num}}
+\newcommand{\tb}{\texttt{b}}
+\newcommand{\tehole}{\llparenthesiscolor\rrparenthesiscolor}
+\newcommand{\tsum}[2]{{#1} + {#2}}
+
+\newcommand{\tconsistent}[2]{#1 \sim #2}
+\newcommand{\tinconsistent}[2]{#1 \nsim #2}
+
+% HExp
+\newcommand{\hexp}{e}
+\newcommand{\hlam}[2]{\lambda #1.#2}
+\newcommand{\halam}[3]{\lambda #1{:}#2.#3}
+\newcommand{\hap}[2]{#1(#2)}
+\newcommand{\hapP}[2]{(#1)~(#2)} % Extra paren around function term
+\newcommand{\hpair}[2]{(#1, #2)}
+\newcommand{\hprj}[2]{\mathsf{prj}_{#1}(#2)}
+\newcommand{\lblL}{\mathsf{L}}
+\newcommand{\lblR}{\mathsf{R}}
+\newcommand{\hnum}[1]{\underline{#1}}
+%\newcommand{\hcase}[5]{\mathsf{case}\,#1\,\mathsf{of}\,#2\Rightarrow#3~\vert~#4\Rightarrow#5}
+\newcommand{\hadd}[2]{#1 + #2}
+\newcommand{\hehole}[1]{\llparenthesiscolor\rrparenthesiscolor^{#1}}
+% \newcommand{\hhole}[1]{\setlength{\fboxsep}{0pt}\fcolorbox{red}{white}{\vphantom{)}$#1$}}
+\newcommand{\hhole}[2]{\llparenthesiscolor#1\rrparenthesiscolor^{#2}}
+% \newcommand{\hhole}[1]{
+  % \setlength{\fboxsep}{0pt}
+  % \colorbox{violet!10!white!100}{\ensuremath{\llparenthesiscolor#1\rrparenthesiscolor}}}
+\newcommand{\hindet}[1]{\lceil#1\rceil}
+%\newcommand{\hinj}[2]{\texttt{inj}_{#1}({#2})}
+\newcommand{\hinL}[1]{\mathsf{inl}(#1)}
+\newcommand{\hinR}[1]{\mathsf{inr}(#1)}
+\newcommand{\hcase}[5]{\texttt{case}({#1},{#2}.{#3},{#4}.{#5})}
+
+\newcommand{\hGamma}{\Gamma}
+\newcommand{\EmptyhGamma}{\emptyset} % From hand-written notes, Canonical forms lemma; page 14
+\newcommand{\EmptyDelta}{\cdot} % From hand-written notes, ES-Const rule, page 1
+\newcommand{\domof}[1]{\text{dom}(#1)}
+\newcommand{\hsyn}[3]{#1 \vdash #2 \Rightarrow #3}
+\newcommand{\hana}[3]{#1 \vdash #2 \Leftarrow #3}
+
+% ZTyp and ZExp
+\newcommand{\zlsel}[1]{{\bowtie}{#1}}
+\newcommand{\zrsel}[1]{{#1}{\bowtie}}
+
+%\newcommand{\zwsel}[1]{\adjustbox{cframe=blue}{\ensuremath{{\textcolor{blue}{\triangleright}}{#1}{\textcolor{blue}{\triangleleft}}}}}
+\newcommand{\zwsel}[1]{
+  \setlength{\fboxsep}{0pt}
+  \colorbox{green!10!white!100}{
+    \ensuremath{{{\textcolor{Green}{{\hspace{-2px}\triangleright}}}}{#1}{\textcolor{Green}{\triangleleft{\vphantom{\tehole}}}}}}
+}
+%\newcommand{\zwsel}[1]{{\triangleright}{#1}{\triangleleft}}
+
+\newcommand{\removeSel}[1]{#1^{\diamond}}
+
+% ZTyp
+\newcommand{\ztau}{\hat{\tau}}
+
+% ZExp
+\newcommand{\zexp}{\hat{e}}
+
+% Direction
+\newcommand{\dParent}{\mathtt{parent}}
+\newcommand{\dChild}{\mathtt{firstChild}}
+\newcommand{\dNext}{\mathtt{nextSib}}
+\newcommand{\dPrev}{\mathtt{prevSib}}
+
+% Action
+\newcommand{\aMove}[1]{\mathtt{move}~#1}
+	\newcommand{\zrightmost}[1]{\mathsf{rightmost}(#1)}
+	\newcommand{\zleftmost}[1]{\mathsf{leftmost}(#1)}
+\newcommand{\aSelect}[1]{\mathtt{sel}~#1}
+\newcommand{\aDel}{\mathtt{del}}
+\newcommand{\aReplace}[1]{\mathtt{replace}~#1}
+\newcommand{\aConstruct}[1]{\mathtt{construct}~#1}
+\newcommand{\aConstructx}[1]{#1}
+\newcommand{\aFinish}{\mathtt{finish}}
+
+\newcommand{\performAna}[5]{#1 \vdash #2 \xlongrightarrow{#4} #5 \Leftarrow #3}
+\newcommand{\performAnaI}[5]{#1 \vdash #2 \xlongrightarrow{#4}\hspace{-3px}{}^{*}~ #5 \Leftarrow #3}
+\newcommand{\performSyn}[6]{#1 \vdash #2 \Rightarrow #3 \xlongrightarrow{#4} #5 \Rightarrow #6}
+\newcommand{\performSynI}[6]{#1 \vdash #2 \Rightarrow #3 \xlongrightarrow{#4}\hspace{-3px}{}^{*}~ #5 \Rightarrow #6}
+\newcommand{\performTyp}[3]{#1 \xlongrightarrow{#2} #3}
+\newcommand{\performTypI}[3]{#1 \xlongrightarrow{#2}\hspace{-3px}{}^{*}~#3}
+
+\newcommand{\performMove}[3]{#1 \xlongrightarrow{#2} #3}
+\newcommand{\performDel}[2]{#1 \xlongrightarrow{\aDel} #2}
+
+% Form
+\newcommand{\farr}{\mathtt{arrow}}
+\newcommand{\fnum}{\mathtt{num}}
+\newcommand{\fsum}{\mathtt{sum}}
+
+\newcommand{\fasc}{\mathtt{asc}}
+\newcommand{\fvar}[1]{\mathtt{var}~#1}
+\newcommand{\flam}[1]{\mathtt{lam}~#1}
+\newcommand{\fap}{\mathtt{ap}}
+\newcommand{\farg}{\mathtt{arg}}
+\newcommand{\fnumlit}[1]{\mathtt{lit}~#1}
+\newcommand{\fplus}{\mathtt{plus}}
+\newcommand{\fhole}{\mathtt{hole}}
+\newcommand{\fnehole}{\mathtt{nehole}}
+
+\newcommand{\finj}[1]{\mathtt{inj}~#1}
+\newcommand{\fcase}[2]{\mathtt{case}~#1~#2}
+
+% Talk about formal rules in example
+\newcommand{\refrule}[1]{\textrm{Rule~(#1)}}
+
+\newcommand{\herase}[1]{\left|#1\right|_\textsf{erase}}
+
+\newcommand{\arrmatch}[2]{#1 \blacktriangleright_{\rightarrow} #2}
+%% TODO maybe write underbracket
+%% \newcommand{\groundmatch}[2]{\underline{#1} = #2}
+\newcommand{\groundmatch}[2]{#1 \blacktriangleright_{\mathsf{ground}} #2}
+\newcommand{\prodmatch}[2]{#1 \blacktriangleright_{\times} #2}
+\newcommand{\summatch}[2]{#1 \blacktriangleright_{+} #2}
+
+
+\newcommand{\TABperformAna}[5]{#1 \vdash & #2                & \xlongrightarrow{#4} & #5 & \Leftarrow #3}
+\newcommand{\TABperformSyn}[6]{#1 \vdash & #2 \Rightarrow #3 & \xlongrightarrow{#4} & #5 \Rightarrow #6}
+\newcommand{\TABperformTyp}[3]{& #1 & \xlongrightarrow{#2} & #3}
+
+\newcommand{\TABperformMove}[3]{#1 & \xlongrightarrow{#2} & #3}
+\newcommand{\TABperformDel}[2]{#1 \xlongrightarrow{\aDel} #2}
+
+\newcommand{\sumhasmatched}[2]{#1 \mathrel{\textcolor{black}{\blacktriangleright_{+}}} #2}
+
+%%%% DYNAMICS %%%%
+%% TODO remove these macros
+%% marks for eval
+\newcommand{\unevaled}{\times}
+\newcommand{\evaled}{\checkmark}
+\newcommand{\markname}{m}
+
+\newcommand{\mvar}[0]{u}
+\newcommand{\subst}[0]{\sigma}
+\newcommand{\substitute}[3]{[#1/#2]#3}
+\newcommand{\fvof}[1]{\mathsf{FV}(#1)}
+\newcommand{\dexp}[0]{d}
+\newcommand{\dconst}[0]{c}
+\newcommand{\dval}[0]{\ddot{v}}
+%% TODO remove this macro
+\newcommand{\dcast}[2]{\langle #1 \rangle ~ #2}
+%% TODO make the following two look better
+\newcommand{\dcasttwo}[3]{#1 \langle{#2}\Rightarrow{#3}\rangle}
+\newcommand{\dcastthree}[4]
+  {#1 \langle{#2}\Rightarrow{#3}\Rightarrow{#4}\rangle} %% sugared version
+  %% {\dcasttwo{\dcasttwo{#1}{#2}{#3}}{#3}{#4}} %% unsugared version
+\newcommand{\dcastfail}[3]{#1 \langle{#2}\Rightarrow{\tehole}\not\Rightarrow{#3}\rangle}
+%% \newcommand{\dlam}[3]{\lambda #1:#2.#3}
+\newcommand{\dlam}[3]{\halam{#1}{#2}{#3}}
+\newcommand{\dap}[2]{#1(#2)}
+\newcommand{\dapP}[2]{(#1)(#2)} % Extra paren around function term
+\newcommand{\dnum}[1]{\underline{#1}}
+%\newcommand{\dcase}[5]{\mathsf{case}\,#1\,\mathsf{of}\,#2\Rightarrow#3~\vert~#4\Rightarrow#5}
+\newcommand{\dadd}[2]{#1 + #2}
+%% TODO third arg should be empty
+\newcommand{\dehole}[3]{\leftidx{^{#3}}{\llparenthesiscolor\rrparenthesiscolor}{^{#1}_{#2}}}
+%% TODO fourth arg should be empty
+\newcommand{\dhole}[4]{\leftidx{^{#4}}{\llparenthesiscolor#1\rrparenthesiscolor}{^{#2}_{#3}}}
+\newcommand{\dindet}[1]{\lceil#1\rceil}
+%\newcommand{\dinj}[2]{\texttt{inj}_{#1}({#2})}
+\newcommand{\dinL}[2]{\mathsf{inl}_{#1}(#2)}
+\newcommand{\dinR}[2]{\mathsf{inr}_{#1}(#2)}
+\newcommand{\dcase}[5]{\texttt{case}({#1},{#2}.{#3},{#4}.{#5})}
+\newcommand{\dpair}[2]{(#1,#2)}
+\newcommand{\dprj}[2]{\mathsf{prj}_{#1}(#2)}
+
+\newcommand{\expandAna}[6]{#1 \vdash #2 \Leftarrow #3 \leadsto #4 : #5 \dashv #6}
+\newcommand{\expandSyn}[5]{#1 \vdash #2 \Rightarrow #3 \leadsto #4 \dashv #5}
+\newcommand{\hasType}[4]{#1; #2 \vdash #3 : #4}
+\newcommand{\isValue}[1]{#1~\mathsf{val}}
+\newcommand{\isGround}[1]{#1~\mathsf{ground}}
+\newcommand{\isBoxedValue}[1]{#1~\mathsf{boxedval}}
+\newcommand{\isIndet}[1]{#1~\mathsf{indet}}
+\newcommand{\isFinal}[1]{#1~\mathsf{final}}
+\newcommand{\isErr}[2]{#1 \vdash #2~\mathsf{err}}
+%% \newcommand{\stepsTo}[2]{#1 \mapsto_{\Delta} #2}
+%% TODO first arg should be empty
+%% \newcommand{\stepsToD}[3]{#1 \vdash #2 \mapsto #3}
+\newcommand{\stepsToD}[3]{#2 \mapsto #3}
+\newcommand{\multiStepsTo}[2]{#1 \mapsto^* #2}
+
+%% TODO if feeling obsessive, replace direct uses of \Delta
+\newcommand{\hDelta}{\Delta}
+\newcommand{\Dunion}[2]{#1 \cup #2}
+\newcommand{\idof}[1]{\mathsf{id}(#1)}
+\newcommand{\Dbinding}[3]{#1 :: #3[#2]}
+\newcommand{\instantiate}[3]{\llbracket#1 / #2\rrbracket #3}
+
+% Contextual dynamics
+\newcommand{\evalctx}{\mathcal{E}}
+\newcommand{\evalhole}{\circ}
+\newcommand{\isevalctx}[1]{#1~\mathsf{evalCtx}}
+%% TODO first arg should be empty
+%% \newcommand{\reducesE}[3]{#1 \vdash #2 \longrightarrow #3}
+\newcommand{\reducesE}[3]{#2 \longrightarrow #3}
+\newcommand{\selectEvalCtxR}[2]{#1\{#2\}}
+\newcommand{\selectEvalCtx}[3]{#1=\selectEvalCtxR{#2}{#3}}
+\newcommand{\maybePremise}[1]{{\textcolor{red}[}#1{\textcolor{red}]}}
+
+\newcommand{\inhole}[2]{\mathsf{inhole}(#1; #2)}
+
+\newcommand{\DoSubst}[3]{[#1/#2]{#3}}

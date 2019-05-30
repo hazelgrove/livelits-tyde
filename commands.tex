@@ -1,0 +1,107 @@
+% !TEX root = main.tex
+
+\newcommand{\mynote}[3]{\textcolor{#3}{\textsf{{#2}}}}
+\newcommand{\rkc}[1]{\mynote{rkc}{#1}{blue}}
+\newcommand{\cy}[1]{\mynote{cy}{#1}{purple}}
+\newcommand{\mah}[1]{\mynote{cy}{#1}{green}}
+\newcommand{\matt}[1]{{\color{blue}{\textit{Matt:~#1}}}}
+
+\newcommand{\cvert}{{\,{\vert}\,}}
+
+%% https://tex.stackexchange.com/questions/9796/how-to-add-todo-notes
+\newcommand{\rkcTodo}[1]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue]{#1}}
+
+\newcommand{\mattTodo}[1]{\todo[linecolor=green,backgroundcolor=green!2,bordercolor=green]{\tiny\textit{#1}}}
+\newcommand{\mattOmit}[1]{\colorbox{yellow}{(Matt omitted stuff here)}}
+
+\def\parahead#1{\paragraph{\textbf{#1.}}}
+%% \def\paraheadNoDot#1{\paragraph{{\textbf{#1}}}}
+\def\subparahead#1{\paragraph{\textit{#1.}}}
+%% \def\paraheadindent#1{\paragraph{}\textit{#1.}}
+%% \def\paraheadindentnodot#1{\paragraph{}\textit{#1}}
+
+% \newcommand{\ie}{{\emph{i.e.}}}
+% \newcommand{\eg}{{\emph{e.g.}}}
+% \newcommand{\etc}{{\emph{etc.}}}
+% \newcommand{\cf}{{\emph{cf.}}}
+% \newcommand{\etal}{{\emph{et al.}}}
+
+%% \newcommand{\hazel}{\ensuremath{\textsc{Hazel}}}
+%% \newcommand{\sns}{\ensuremath{\textsc{Sketch-n-Sketch}}}
+%% \newcommand{\deuce}{\ensuremath{\textsc{Deuce}}}
+\newcommand{\Elm}{\ensuremath{\textsf{Elm}}}
+\newcommand{\sns}{\ensuremath{\textrm{Sketch-n-Sketch}}}
+\newcommand{\deuce}{\ensuremath{\textrm{Deuce}}}
+
+\newcommand{\sectionDescription}[1]{\section{#1}}
+\newcommand{\subsectionDescription}[1]{\subsection{#1}}
+\newcommand{\subsubsectionDescription}[1]{\subsubsection{#1}}
+%% \newcommand{\subsectionDescription}[1]{\subsection*{#1}}
+\newcommand{\suppMaterials}{the Supplementary Materials}
+
+\newcommand{\defeq}{\overset{\textrm{def}}{=}}
+
+\newcommand{\eap}{action suggestion panel\xspace}
+\newcommand{\Eap}{Action suggestion panel\xspace}
+
+\newcommand{\myfootnote}[1]{\footnote{ #1}}
+
+\def\sectionautorefname{Section}
+\def\subsectionautorefname{Section}
+\def\subsubsectionautorefname{Section}
+
+\newcommand{\code}[1]{\lstinline{#1}}
+
+% Make italic?
+%\newcommand{\Property}[1]{\emph{#1}}
+\newcommand{\Property}[1]{\textrm{#1}}
+
+% Calling out Cyrus's favorite verb, 'to be' ;)
+\newcommand{\IS}{\colorbox{red}{is}\xspace}
+
+\newcommand{\codeSize}
+  %% {\footnotesize}
+  {\small}
+
+%\newcommand{\JoinTypes}[2]{\textsf{join}~~#1~~#2}
+\newcommand{\JoinTypes}[2]{\textsf{join}(#1,#2)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Spacing
+
+\newcommand{\sep}{\hspace{0.06in}}
+\newcommand{\sepPremise}{\hspace{0.20in}}
+\newcommand{\hsepRule}{\hspace{0.20in}}
+\newcommand{\vsepRuleHeight}{0.08in}
+\newcommand{\vsepRule}{\vspace{\vsepRuleHeight}}
+\newcommand{\miniSepOne}{\hspace{0.01in}}
+\newcommand{\miniSepTwo}{\hspace{0.02in}}
+\newcommand{\miniSepThree}{\hspace{0.03in}}
+\newcommand{\miniSepFour}{\hspace{0.04in}}
+\newcommand{\miniSepFive}{\hspace{0.05in}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \lstset{
+% %mathescape=true,basicstyle=\fontsize{8}{9}\ttfamily,
+% literate={=>}{$\Rightarrow$}2
+%          {<=}{$\leq$}2
+%          {->}{${\rightarrow}$}1
+%          {\\\\=}{\color{red}{$\lambda$}}2
+%          {\\\\}{$\lambda$}2
+%          {**}{$\times$}2
+%          {*.}{${\color{blue}{\texttt{*.}}}$}2
+%          {+.}{${\color{blue}{\texttt{+.}}}$}2
+%          {<}{${\color{green}{\lhd}}$}1
+%          {>?}{${\color{green}{\rhd}}$?}2
+%          {<<}{${\color{green}{\blacktriangleleft}}$}1
+%          {>>?}{${\color{green}{\blacktriangleright}}$?}2
+%          {\{}{${\color{blue}{\{}}$}1
+%          {\}}{${\color{blue}{\}}}$}1
+%          {[}{${\color{purple}{[}}$}1
+%          {]}{${\color{purple}{]}}$}1
+%          {(}{${\color{darkgray}{\texttt{(}}}$}1
+%          {)}{${\color{darkgray}{\texttt{)}}}$}1
+%          {]]}{${\color{gray}{\big(}}$}1
+%          {]]}{${\color{gray}{\big)}}$}1
+% }

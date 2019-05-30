@@ -1,0 +1,38 @@
+% Ordinary (value) types (ty-)
+\newcommand{\ty}[0]{\tau} % Meta variable for types
+\newcommand{\tyHref}[1]{\keyword{Href}\left<#1\right>} % Hole reference type, parameterized by the type within the hole
+\newcommand{\tyNum}[0]{\keyword{Num}}
+\newcommand{\tySum}[2]{#1 + #2}
+\newcommand{\tyProd}[2]{#1 \times #2}
+
+% Expression forms (e-)
+\newcommand{\e}[0]{e} % Meta variable for expressions
+\newcommand{\ePalLet}[3]{\keyword{let palette}\,#1\,\keyword{=}\,#2\,\keyword{in}\,#3}
+\newcommand{\ePalApp}[2]{#1~#2}
+
+% Palette types (pt-)
+\newcommand{\pt}[0]{T} % Meta variable for palette types
+\newcommand{\ptPal}[2]{\keyword{Palette}\,#1\,#2}
+\newcommand{\ptArr}[2]{#1 \rightarrow #2}
+
+% Palette expressions (p-)               % 
+\newcommand{\p}{p} % Meta variable for   % 
+                   % palette expressions % From Ravi's notes:
+\newcommand{\pDef}[1]{#1}                %   pd
+\newcommand{\pLam}[2]{\lambda#1.#2}      %   \x -> p
+\newcommand{\pApp}[2]{#1~#2}             %   p e
+
+% Palette definitions (pd-)
+\newcommand{\pd}{D} % Meta variable for palette definitions
+\newcommand{\pdBody}[7]{\{ #1, #2, #3, #4, #5, #6, #7 \}} % (the body of) a palette definition
+\newcommand{\pdBodyTwoRows}[7]{\left\{ \begin{array}{l} #1, #2, #3, \\ #4, #5, #6, #7 \end{array} \right\}} % (the body of) a palette definition
+
+% Palette typing context (ascribes a palette type to each palette variable)
+\newcommand{\Ptc}[0]{\Delta}        % Meta variable
+\newcommand{\PtcEmp}[0]{\cdot}      % Empty
+\newcommand{\PtcBind}[3]{#1, #2:#3} % Binding
+
+% Value typing context (ascribes a value type to each value variable)
+\newcommand{\Ctx}{\Gamma}           % Meta variable
+\newcommand{\CtxEmp}[0]{\cdot}      % Empty
+\newcommand{\CtxBind}[3]{#1, #2:#3} % Binding

@@ -1,0 +1,86 @@
+\begin{figure*}
+\begin{grammar}
+ Expressions 
+ & $\e$ 
+   & $\bnfas$ &
+     $\ePalLet{x}{p}{e}$ & Palette definition $p$ as $x$ in $e$
+ \\ &&& $\bnfaltbrk \ePalApp{p}{e}$ & Palette ``instantiation'' (?)
+%
+\\[1ex]
+Typing contexts
+ & $\Ctx$
+   & $\bnfas$ &
+    $\CtxEmp \bnfalt \CtxBind{\Ctx}{x}{\ty}$ & Empty context; Variable binding for value type~$\ty$
+\\
+Types
+ & $\ty$
+   & $\bnfas$ &
+    $\tyHref{\ty}$ & Hole reference type; parameterized by type within hole~$\ty$
+%\\ &&& $\bnfaltbrk \tyNum$ & Numbers (basetype)
+%\\ &&& $\bnfaltbrk \tySum{\ty_1}{\ty_2}$ & Sum types
+%\\ &&& $\bnfaltbrk \tyProd{\ty_1}{\ty_2}$ & Product types  
+\\ &&& $\bnfaltbrk \tyNum \bnfalt \tySum{\ty_1}{\ty_2} \bnfalt \tyProd{\ty_1}{\ty_2}$ & Numbers (basetype); Sum types; Product types
+%
+\\[1ex]
+ Palette definitions
+ & $\pd$
+   & $\bnfas$ &
+    $\pdBodyTwoRows{\ty_{\textsf{expand}}}{\ty_{\textsf{expand}}}{\ty_{\textsf{msg}}}{\e_{\textsf{init}}}{\e_{\textsf{update}}}{\e_{\textsf{expand}}}{\e_{\textsf{view}}}$ & Palette definition
+%
+\\[2ex]
+ Palette expressions
+ & $\p$
+   & $\bnfas$ &
+    $\pDef{\pd}$ & Body of palette definition: Types and expressions
+\\ &&& $\bnfaltbrk \pLam{x}{p}$ & Palette abstraction
+\\ &&& $\bnfaltbrk \pApp{p}{e}$ & Palette application
+%
+\\[1ex]
+Pallete typing contexts
+ & $\Ptc$
+   & $\bnfas$ &
+     $\PtcEmp \bnfalt \PtcBind{\Ptc}{x}{\pt}$ & Empty context; Variable binding for palette type~$\pt$
+\\
+Palette types
+ & $\pt$
+   & $\bnfas$ &
+    $\ptPal{\ty_{\textsf{expand}}}{\ty_{\textsf{model}}}$ & Palette type
+\\ &&& $\bnfaltbrk \ptArr{\ty}{\pt}$ & Palette arrow type
+\end{grammar}
+\end{figure*}
+
+%% TODO-Hammer: Typeset these judgment forms and rules:
+
+%% ----------------------------------------------------------------------------
+
+%% Expression Typing      G; D |- e : T
+
+%%   G; D |- p       : Palette T_expand T_model
+%%   G; D |- e_model : T_model
+%%   --------------------------------- [E-Palette]
+%%   G; D |- $p e_model : T_expand
+
+%% ----------------------------------------------------------------------------
+
+%% Palette Expression Typing      G; D |-_p p : PT
+
+%%   pd = { T_expand, T_model, T_msg, e_init, e_update, e_expand, e_view }
+%%   D |- T_model
+%%   D |- T_msg
+%%   D' = model :: S(T_model), msg :: S(T_msg), D
+%%   0; D' |- e_init : model
+%%   0; D' |- e_update : msg -> model -> model
+%%   0; D' |- e_expand : Exp
+%%   0; D' |- e_view : Html msg
+%%   ------------------------------------------ [P-Def]
+%%   G; D |-_p pd : Palette T_expand T_model
+
+%%   G; D, T |-_p p : PT
+%%   --------------------------- [P-Lam]
+%%   G; D |-_p \x -> p : T -> PT
+
+%%   D |-_p p : T -> PT
+%%   G |-   e : T
+%%   --------------------------- [P-App]
+%%   G; D |-_p p e : PT
+

@@ -1,0 +1,20 @@
+% !TEX root = palettes-obt19.tex
+
+%% no citations in Abstract
+%%
+%% \cite{popl-paper}
+
+\begin{abstract}
+Text editing is powerful, but entering text is often not the most natural way to 
+construct certain types of expressions, such as those encoding colors, animations, 
+musical sequences, tabular data, plots, widgets, graphs, and various other data structures.
+We introduce \emph{live literals}, or \emph{livelits}, which allow the programmer 
+to fill holes of such types by directly manipulating a graphical user interface. 
+Livelits are {compositional}: this GUI can itself contain typed holes that the programmer can fill with expressions that might contain other livelits. 
+Livelits are also live: they can provide {immediate feedback} about the dynamic implications of the programmer's choices,  
+even when the subexpressions mention bound
+variables, because the livelit is given access to closures associated with the hole that the livelit is tasked with filling.
+We are implementing livelits within Hazel, 
+a live functional programming environment
+that assigns meaning to every edit state.
+\end{abstract}
