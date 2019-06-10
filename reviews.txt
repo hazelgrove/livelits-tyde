@@ -1,0 +1,72 @@
+ Review #17A
+===========================================================================
+
+Overall merit
+-------------
+3. Weak accept
+
+Reviewer expertise
+------------------
+1. No familiarity
+
+Paper summary
+-------------
+Livelits provide a more intuitive way to input expressions by allowing a type to be associated with GUI code that displays a suitable/specialised interface for editing expressions of that type, even open expressions.
+
+Comments for author
+-------------------
+While using specialised GUI to enter values isn’t exactly a new idea (and a straightforward way to do this, as implemented by the Graphite system, is described in the extended abstract), livelits’ design seems to be particularly good as it allows the GUI code to be written in programs and customised, supports open expressions, and is integrated with Hazel’s ability to evaluate incomplete programs to provide live feedback.
+
+I feel that livelits have the potential to go beyond merely providing visually appealing ways to input literals and support novel interfaces for type-driven development — after all, displaying a type-specific interface with which the programmer interacts to construct values of that type is exactly the idea of type-driven development.  For example, with an algebraic datatype, we might be able to program a drop-down menu that allows the programmer to select one of the constructors of the datatype — which should count as a classic example of type-driven development. As another example, it is not unimaginable that the interaction holes of Agda/Idris can be implemented through the livelits mechanism, seeing that the GUI code has access to the context and allows construction of open expressions.
+
+Livelits by itself is a very general mechanism though, so I’m more interested in specific and more complex interfaces and how they help the programmer.  Thus, in the demo, I would probably prefer to see some more radical (even crazy) interfaces (as opposed to, e.g., colour choosers, which are quite standard) that can better convince people of livelits’ potential.  The `grade_cutoffs` interface is an example in the right direction; are there more?
+
+Typos: “We believe that it possible” -> We believe that it is possible; “as if it the livelits were [...]” -> as if the livelits were [...]
+
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+
+Review #17B
+===========================================================================
+
+Overall merit
+-------------
+4. Accept
+
+Reviewer expertise
+------------------
+2. Some familiarity
+
+Paper summary
+-------------
+This abstract describes livelits, which are a mechanism to directly input values of certain types into typed holes, using GUIs. The motivation for this work is take advantage of the manipulation and feedback provided by GUIs, while also being able to use the mechanisms of the programming languages, such as abstraction and composition on the objects obtained from the GUIs. This mechanism is being implemented within the Hazel live functional programming environment.
+
+Comments for author
+-------------------
+The implementation follows some previous work by the authors on the theory behind livelits, which makes the work promising. The subject is clearly within scope and therefore should be accepted for presentation at the workshop. The authors mention they will perform a live demo, which will certainly be interesting, but I would also like hear about the type system for livelits.
+
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+
+Review #17C
+===========================================================================
+
+Overall merit
+-------------
+5. Strong accept
+
+Reviewer expertise
+------------------
+3. Knowledgeable
+
+Paper summary
+-------------
+The abstract describes an architecture for live literals: literal values supporting persistent graphical editors.
+
+Comments for author
+-------------------
+The work is well-motivated, and the examples are interesting.  I support its inclusion in the program.
+
+Figure 2 seems somewhat magical to me.  Perhaps `weighted_averages` should be given an argument?  Otherwise the display of orange dots and the included warning seem to be drawing on some ambient knowledge about where grades live.
